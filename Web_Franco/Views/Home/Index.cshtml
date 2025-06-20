@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "CV - Franco Mamani";
+    var personalInfo = ViewBag.PersonalInfo as Web_Franco.Models.PersonalInfo;
+    var educacion = ViewBag.Educacion as Web_Franco.Models.Educacion;
+    var experiencia = ViewBag.Experiencia as Web_Franco.Models.Experiencia;
+    var habilidadesDuras = ViewBag.HabilidadesDuras as List<Web_Franco.Models.Habilidad>;
+    var habilidadesBlandas = ViewBag.HabilidadesBlandas as List<Web_Franco.Models.Habilidad>;
+}
+
+<div class="row">
+    <!-- Información Personal -->
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-user me-2"></i>Información Personal</h5>
+            </div>
+            <div class="card-body">
+                <h6 class="card-title">@personalInfo.NombreCompleto</h6>
+                <p class="card-text">
+                    <strong>@personalInfo.Titulo</strong>
+                </p>
+                <hr>
+                <p class="mb-2">
+                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                    @personalInfo.Direccion
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-phone text-primary me-2"></i>
+                    @personalInfo.Telefono
+                </p>
+                <p class="mb-2">
+                    <i class="fas fa-envelope text-primary me-2"></i>
+                    <a href="mailto:@personalInfo.Email">@personalInfo.Email</a>
+                </p>
+                <p class="mb-0">
+                    <i class="fab fa-linkedin text-primary me-2"></i>
+                    LinkedIn: @personalInfo.LinkedIn
+                </p>
+            </div>
+        </div>
+
+        <!-- Otros Datos -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Otros Datos</h5>
+            </div>
+            <div class="card-body">
+                <h6><i class="fas fa-language me-2"></i>Idiomas</h6>
+                <p class="mb-3">• Inglés (Intermedio | Instituto Cultural Peruano-Americano)</p>
+
+                <h6><i class="fas fa-desktop me-2"></i>Informática</h6>
+                <p class="mb-3">• Microsoft Office (Avanzado)</p>
+
+                <h6><i class="fas fa-address-book me-2"></i>Referencias</h6>
+                <p class="mb-1"><strong>Sr. Carlos Oblea</strong></p>
+                <p class="mb-1">Jefe de TI - GRUPO MOSS</p>
+                <p class="mb-1">955 111 234</p>
+                <p class="mb-0">c.oblea@grupomoss.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <div class="col-md-8">
+        <!-- Resumen Profesional -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-user-tie me-2"></i>Resumen Profesional</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-justify">
+                    Recién egresado de la carrera de Diseño y Desarrollo de Software con sólidos conocimientos en programación (JavaScript, Python, C#) y manejo de bases de datos (SQL, MongoDB). Experiencia en desarrollo web mediante proyectos académicos y una pasantía en GRUPO MOSS, donde implementé un sistema de gestión de inventarios usando React y Node.js. Capacidad para trabajar en equipo bajo metodologías ágiles (Scrum) y resolver problemas técnicos con enfoque creativo. Destaco por mi rápida adaptación a nuevas tecnologías y compromiso con la calidad del código.
+                </p>
+            </div>
+        </div>
+
+        <!-- Objetivo Profesional -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0"><i class="fas fa-bullseye me-2"></i>Objetivo Profesional</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-justify">
+                    Busco iniciar mi carrera como Practicante de Desarrollo de Software, aplicando mis conocimientos en programación y diseño de sistemas para contribuir a proyectos innovadores en el área tecnológica. Mi objetivo es crecer profesionalmente, aprender de un equipo experimentado y aportar soluciones eficientes que generen valor en los proyectos donde participe.
+                </p>
+            </div>
+        </div>
+
+        <!-- Formación Académica -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="fas fa-graduation-cap me-2"></i>Formación Académica</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <span class="badge bg-primary">@educacion.Periodo</span>
+                    </div>
+                    <div class="col-md-9">
+                        <h6>@educacion.Titulo</h6>
+                        <p class="mb-1"><strong>@educacion.Institucion</strong></p>
+                        <p class="mb-0 text-muted">@educacion.Descripcion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experiencia Laboral -->
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="fas fa-briefcase me-2"></i>Experiencia Laboral</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <span class="badge bg-success">@experiencia.Periodo</span>
+                    </div>
+                    <div class="col-md-9">
+                        <h6>@experiencia.Cargo</h6>
+                        <p class="mb-2"><strong>@experiencia.Empresa</strong></p>
+                    </div>
+                </div>
+
+                <h6 class="text-primary">Implementaciones:</h6>
+                <ul class="list-group list-group-flush mb-3">
+                    @foreach (var implementacion in experiencia.Implementaciones)
+                    {
+                        <li class="list-group-item">@implementacion</li>
+                    }
+                </ul>
+
+                <h6 class="text-success">Logros:</h6>
+                <ul class="list-group list-group-flush">
+                    @foreach (var logro in experiencia.Logros)
+                    {
+                        <li class="list-group-item">@logro</li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <!-- Habilidades -->
+        <div class="row">
+            <!-- Habilidades Duras -->
+            <div class="col-md-6">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>Habilidades Duras</h5>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var habilidad in habilidadesDuras)
+                        {
+                            <div class="mb-3">
+                                <h6 class="text-primary">@habilidad.Nombre</h6>
+                                <p class="small text-muted">@habilidad.Descripcion</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habilidades Blandas -->
+            <div class="col-md-6">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-heart me-2"></i>Habilidades Blandas</h5>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var habilidad in habilidadesBlandas)
+                        {
+                            <div class="mb-3">
+                                <h6 class="text-success">@habilidad.Nombre</h6>
+                                <p class="small text-muted">@habilidad.Descripcion</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
